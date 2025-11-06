@@ -82,25 +82,36 @@ let hortPos =[
   1,
   1,
 ]
+let hortrndspeed =[
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+  Math.random()*(1.25-0.75)+0.75,
+]
 function hortStart() {
   let h = 0;
   hortLoop()
   function hortLoop(){
-    setTimeout(function(){
     for (let i = 0; i < 8; i++) {
-      var speed = (Math.random()* 10)+10 / 100  // => generierung der Zufallseinheit0;;
-      hortPos[i] += speed
-      console.log(hortPos)
-      console.log(speed)
+      if(hortPos[i] < 80){
+        setTimeout(function(){
+      var speed = (Math.random()* hortrndspeed[i])/ 10;  // => generierung der Zufallseinheit0;;
+      hortPos[i] += speed;
+      console.log(hortPos);
+      //console.log(speed)
       hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";   //0.085 => weite des schrittes pro zufallseinheit
-      h++
-      hort[i] < "84"
-    
-    if(h < 150){ //menge der durchgänge der schleife
-      hortLoop();
+      //if(i = 7) {h++}
+      h++;
+      //hort[i] < "84"
+    hortLoop()
+      
+  },150) //ms pro druchgang => schnelligkeit
     }
-    }
-  },20) //ms pro druchgang => schnelligkeit
+  }
 }
 }
 /*  if (isPlaying === 0) {
@@ -229,7 +240,9 @@ function blackjackStart() {
           document.getElementById("blackjackStand").disabled = false;
           waitForButton();
           async function waitForButton() {
-            let buttonPressed = new Promise(function (resolve) {
+            await buttonPressed();
+            function buttonPressed(){
+              return new Promise((resolve) => {
               document
                 .getElementById("blackjackHit")
                 .addEventListener("click", function () {
@@ -309,10 +322,9 @@ function blackjackStart() {
                     }, 100);
                     restartGame();
                   }
-                  resolve();
-                });
+                })
             });
-            await buttonPressed;
+        }
           }
           function restartGame() {
             document.getElementById("dealerCards").innerHTML = "";
@@ -370,17 +382,19 @@ function randomCard(newRun) {
     }
     chosenCard = "./images/cardDeck/" + cardSuits + "_" + cardNumber + ".jpg";
     console.log(usedCards);
-    if (usedCards.includes(chosenCard)) {
+    if (usedCards.includes(chosenCard) === true) {
       card();
       console.log("test");
     }
   }
+  
   if (usedCards.includes(chosenCard) === false) {
     usedCards.push(chosenCard);
     console.log(usedCards);
     return chosenCard;
   }
-}
+  }
+
 function getCardCount(card) {
   console.log(card);
   let cardCount = card.substring(20, 23);
