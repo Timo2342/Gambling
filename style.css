@@ -22,14 +22,17 @@ header {
   padding: 5px;
 }
 #run_simulation_hort {
-  border-radius: 20px;
+  border-radius: 10px;
   border-color: black;
   border-width: 10vw;
   margin: 5vw;
   margin-bottom: 2vw;
   width: 90vw;
-  height: 50vh;
-  background-color: rgb(76, 129, 22);
+  height: 30vw;
+  margin-left: 5vw;
+  background-image: url(./images/8-lanes-start-position-stadium-running-tracks-starting-point-eight-running-track-lanes_757852-1707.png);
+  background-size: 90vw;
+  background-position: center;
 }
 .hort {
   position: absolute;
@@ -39,36 +42,28 @@ header {
   margin-left: 1vw;
 }
 #red {
-  margin-top: 7vh;
+  margin-top: 4.2vw;
 }
 #black {
-  margin-top: 13vh;
+  margin-top: 11.7vw;
 }
 #cyan {
-  margin-top: 19vh;
+  margin-top: 8vw;
 }
 #pink {
-  margin-top: 25vh;
+  margin-top: 15.4vw;
 }
 #white {
-  margin-top: 31vh;
+  margin-top: 19.2vw;
 }
 #yellow {
-  margin-top: 37vh;
+  margin-top: 22.9vw;
 }
 #blue {
-  margin-top: 43vh;
+  margin-top: 26.7vw;
 }
 #orange {
-  margin-top: 1vh;
-}
-@keyframes check1 {
-  from {
-    margin-left: 0vw;
-  }
-  to {
-    margin-left: 85vw;
-  }
+  margin-top: 0.5vw;
 }
 #blackjackDiv {
   display: flex;
@@ -99,20 +94,39 @@ header {
   margin: 1vw;
   padding: 0.2vw;
 }
-@keyframes hortrun{
-  0% {
-    left: 0vw;
-  }
-  25% { 
-    left: 20vw;
-  }
-  50% {
-    left: 40vw;
-  }
-  75% {
-    left: 60vw;
-  }
-  100% {
-    left: 85vw;
-  }
+.bettingbutton {
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 500px;
+  appearance: unset;
+  margin: 0.2vw;
+}
+#mry{
+  margin-top: 7vh;
+  background-color: orangered;
+}
+#cyn{
+  background-color: cyan;
+}
+#box{
+  background-color: black;
+}
+#pnk{
+  background-color: pink;
+}
+#res{
+  background-color: red;
+}
+#sup{
+  background-color: white;
+}
+#yel{
+  background-color: yellow;
+}
+#bul{
+  background-color: blue;
+}
+#horsetrack{
+  width: 80vw;
+  height: 20vw;
 }

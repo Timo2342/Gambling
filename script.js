@@ -30,7 +30,12 @@ window.onload = (event) => {
 };
 
 function gambling(bet, win, multiplier) {
-  if (bet <= coins) {
+ if(bet === ""){
+  alert("Input Bet")
+  return false;
+}
+  else if (bet <= coins) {
+    console.log(bet)
     if (win === true) {
       if (multiplier > 0) {
         coins = coins * 1 + multiplier * bet * 1;
@@ -43,7 +48,7 @@ function gambling(bet, win, multiplier) {
     localStorage.setItem("coins", coins);
     document.getElementById("coinAmt").innerText = coins;
     return true;
-  } else if (bet <= 0) {
+  }else if (bet <= 0) {
     alert("Bet must be over 0");
     return false;
   } else {
@@ -59,102 +64,79 @@ function buy() {
 function test() {
   console.log(orange.style.animationPlayState);
 }
-var isPlaying = 0;
-var Win = 0;
-var MryWin = 0;
-var hort = [
-  document.getElementById("orange"),
-  document.getElementById("red"),
-  document.getElementById("black"),
-  document.getElementById("cyan"),
-  document.getElementById("pink"),
-  document.getElementById("white"),
-  document.getElementById("yellow"),
-  document.getElementById("blue"),
-];
-let hortPos =[
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-]
-let hortrndspeed =[
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-  Math.random()*(1.25-0.75)+0.75,
-]
 function hortStart() {
-  let h = 0;
+  document.getElementById("start_run_hort").disabled = "true"
+  var hort = [
+    document.getElementById("orange"),
+    document.getElementById("red"),
+    document.getElementById("black"),
+    document.getElementById("cyan"),
+    document.getElementById("pink"),
+    document.getElementById("white"),
+    document.getElementById("yellow"),
+    document.getElementById("blue"),
+  ];
+  function above85(value){
+    return value > 79
+  }
+  function above50(value){
+    return value > 50
+  }
+  var hortPos = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+  ]
+  var hortrndspeed =[
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+    Math.random()*(1.25-0.75)+0.75,
+  ];
+var betting = document.getElementById("currency_input_hort").value;
+  if ( document.getElementById("currency_input_hort").value !== ""){
   hortLoop()
   function hortLoop(){
     for (let i = 0; i < 8; i++) {
-      if(hortPos[i] < 80){
+      if (hortPos.find(above85) === undefined) {
         setTimeout(function(){
-      var speed = (Math.random()* hortrndspeed[i])/ 10;  // => generierung der Zufallseinheit0;;
-      hortPos[i] += speed;
-      console.log(hortPos);
-      //console.log(speed)
-      hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";   //0.085 => weite des schrittes pro zufallseinheit
-      //if(i = 7) {h++}
-      h++;
-      //hort[i] < "84"
-    hortLoop()
-      
-  },150) //ms pro druchgang => schnelligkeit
-    }
-  }
-}
-}
-/*  if (isPlaying === 0) {
-    for (let h = 0; h < 8; h++) {
-      console.log(isPlaying);
-
-      isPlaying = 1;
-      var Speed = [
-        Math.floor(Math.random() * 1000 + 100),
-        Math.floor(Math.random() * 1000 + 100),
-        Math.floor(Math.random() * 1000 + 100),
-        Math.floor(Math.random() * 1000 + 100),
-      ];
-      console.log(Speed);
-      var horte = hort[h];
-       for (let i = 0; i < 4; i++) {
-        var Speed1 = Math.floor(Math.random() * 1000 + 100) + "ms";
-        let hortRan = new Promise(function (resolve) {
-          let frame = "check" + (i + 1);
-          horte.style.animation = frame;
-          horte.style.animationTimingFunction = "linear";
-          horte.style.animationFillMode = "both";
-          horte.style.animationDuration = Speed1;
-          console.log(horte.style.animationPlayState);
-          console.log(Win, MryWin, frame);
-          setTimeout(function () {
-            resolve();
-          }, Speed[i]);
-        });
-        await hortRan;
-      } 
-      
-      if (Win === 0) {
-        MryWin = 1;
-        Win = 1;
-        console.log(Win, MryWin);
-      }
-    }
-  }
-} 
-*/
-let bet;
-function blackjackStart() {
+          var speed = (Math.random()* hortrndspeed[i])/ 10;  // => generierung der Zufallseinheit0;;
+          hortPos[i] += speed;
+          hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";   //0.085 => weite des schrittes pro zufallseinheit
+          if (hortPos.find(above50) !== undefined) {  //Tie Braker aka generiert midway speed mod neu
+             hortrndspeed =[
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+              Math.random()*(1.25-0.75)+0.75,
+            ];
+            console.log(hortrndspeed);
+          }
+          if (i === 7) {hortLoop()}
+  },1)} //ms pro druchgang => schnelligkeit
+  else {
+    console.log(hortPos.findIndex(above85)); // gibt mir wer gewinner ist
+    document.getElementById("start_run_hort").disabled = false  //reset 
+  }}}}
+  else {
+    document.getElementById("start_run_hort").disabled = false  //reset 
+    }}// das einfach genial
+let usedCards = [];
+function blackjackStart() { 
+  let bet;
   let playerACard = 0 * 1;
   let dealerACard = 0 * 1;
   bet = document.getElementById("blackjackBet").value;
@@ -188,15 +170,19 @@ function blackjackStart() {
           seconndPlayerCard.src = seconndPlayerCardNumber;
           if (getCardCount(firstPlayerCardNumber) === 11) {
             playerACard += 1;
+            console.log("A")
           }
           if (getCardCount(firstDealerCardNumber) === 11) {
             dealerACard += 1;
+            console.log("A")
           }
           if (getCardCount(seconndPlayerCardNumber) === 11) {
             playerACard += 1;
+            console.log("A")
           }
           if (getCardCount(seconndDealerCardNumber) === 11) {
             dealerACard += 1;
+            console.log("A")
           }
           console.log(playerACard);
           if (
@@ -238,11 +224,6 @@ function blackjackStart() {
             getCardCount(seconndPlayerCardNumber);
           document.getElementById("blackjackHit").disabled = false;
           document.getElementById("blackjackStand").disabled = false;
-          waitForButton();
-          async function waitForButton() {
-            await buttonPressed();
-            function buttonPressed(){
-              return new Promise((resolve) => {
               document
                 .getElementById("blackjackHit")
                 .addEventListener("click", function () {
@@ -258,21 +239,20 @@ function blackjackStart() {
                   console.log(playerACard);
                   if (getCardCount(anotherPlayerCardNumber) === 11) {
                     playerACard += 1;
+                    console.log("A")
                   }
-                  if (playerCardNumber > 21) {
-                    if (playerACard > 0) {
+                  if (playerACard > 0 && playerCardNumber > 21) {
                       playerCardNumber -= 10;
                       playerACard -= 1;
-                    }
                   }
                   if (playerCardNumber > 21) {
                     gambling(bet, false);
                     setTimeout(function () {
+                      console.log("lost over 21")
                       alert("You lost due to a count over 21");
-                    }, 100);
-                    restartGame();
+                    }, 200);
+                    restartGame()
                   }
-                  resolve();
                 });
               document
                 .getElementById("blackjackStand")
@@ -292,6 +272,7 @@ function blackjackStart() {
                     dealerCardNumber += getCardCount(anotherDealerCardNumber);
                     if (getCardCount(anotherDealerCardNumber) === 11) {
                       dealerACard += 1;
+                      console.log("A")
                     }
                     if (dealerACard > 0 && dealerCardNumber > 21) {
                       dealerCardNumber -= 10;
@@ -302,42 +283,45 @@ function blackjackStart() {
                     gambling(bet, true);
                     setTimeout(function () {
                       alert("Dealer has over 21");
-                    }, 100);
+                    }, 200);
                     restartGame();
                   } else if (dealerCardNumber < playerCardNumber) {
                     gambling(bet, true);
                     setTimeout(function () {
                       alert("You have a higher card number than the dealer");
-                    }, 100);
+                    }, 200);
                     restartGame();
                   } else if (dealerCardNumber > playerCardNumber) {
                     gambling(bet, false);
                     setTimeout(function () {
                       alert("You have a lower card number than the dealer");
-                    }, 100);
+                    }, 200);
                     restartGame();
                   } else {
                     setTimeout(function () {
                       alert("You have the same card number as the dealer");
-                    }, 100);
+                    }, 200);
                     restartGame();
                   }
                 })
-            });
-        }
-          }
           function restartGame() {
             document.getElementById("dealerCards").innerHTML = "";
             document.getElementById("playerCards").innerHTML = "";
             document.getElementById("blackjackBet").disabled = false;
             document.getElementById("startBlackjack").disabled = false;
+            document.getElementById("blackjackHit").disabled = true
+            document.getElementById("blackjackStand").disabled = true
+            playerACard = 0
+            dealerACard = 0
+            usedCards = []
+            console.log(usedCards)
+           
           }
         }, 500);
       }, 500);
     }, 500);
   }
 }
-let usedCards = [];
 function randomCard(newRun) {
   let chosenCard;
   card();
