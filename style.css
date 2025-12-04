@@ -93,6 +93,8 @@ header {
 .blackjackButton {
   margin: 1vw;
   padding: 0.2vw;
+  width: 3vw;
+  font-size: 1vw;
 }
 .bettingbutton {
   width: 2.5vw;

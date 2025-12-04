@@ -93,7 +93,7 @@ var betting = document.getElementById("currency_input_hort").value;
   else {
     console.log(hortPos.findIndex(above85)); // gibt mir wer gewinner ist
     if (hortPos.findIndex(above85) == betOnVal) {
-        document.getElementById("currency_input_hort").value * 2
+        gambling(betting, hortPos.findIndex(above85) == betOnVal,)
 
     }
     document.getElementById("start_run_hort").disabled = false  //reset 
