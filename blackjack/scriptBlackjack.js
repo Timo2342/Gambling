@@ -7,6 +7,14 @@ function blackjackStart() {
   let dealerACard = 0 * 1;
   bet = document.getElementById("blackjackBet").value;
   if (gambling(bet)) {
+    document.getElementById("dealerCards").innerHTML = "";
+            document.getElementById("playerCards").innerHTML = "";
+            document.getElementById("blackjackBet").disabled = false;
+            document.getElementById("startBlackjack").disabled = false;
+            document.getElementById("blackjackHit").disabled = true
+            document.getElementById("blackjackStand").disabled = true
+            document.getElementById("blackjackHit").removeEventListener("click",blackjackHit)
+            document.getElementById("blackjackStand").removeEventListener("click",blackjackStand)
     document.getElementById("blackjackBet").disabled = true;
     document.getElementById("startBlackjack").disabled = true;
     document.getElementById("blackjackHit").disabled = true;
@@ -60,7 +68,7 @@ function blackjackStart() {
               21
           ) {
             alert("Both have Blackjack");
-            restartGame();
+            gameStop();
             return;
           } else if (
             getCardCount(firstPlayerCardNumber) +
@@ -71,7 +79,7 @@ function blackjackStart() {
             setTimeout(function () {
               alert("You won due to Blackjack");
             }, 100);
-            restartGame();
+            gameStop();
             return;
           } else if (
             getCardCount(firstDealerCardNumber) +
@@ -81,7 +89,7 @@ function blackjackStart() {
             gambling(bet, false);
             setTimeout(function () {
               alert("You lost due to Blackjack");
-              restartGame();
+              gameStop();
               return;
             }, 100);
           }
@@ -118,7 +126,7 @@ function blackjackStart() {
                       console.log("lost over 21")
                       alert("You lost due to a count over 21");
                     }, 200);
-                    restartGame()
+                    gameStop()
                   }
                 }
               document
@@ -152,40 +160,38 @@ function blackjackStart() {
                     setTimeout(function () {
                       alert("Dealer has over 21");
                     }, 200);
-                    restartGame();
+                    gameStop();
                   } else if (dealerCardNumber < playerCardNumber) {
                     gambling(bet, true);
                     setTimeout(function () {
                       alert("You have a higher card number than the dealer");
                     }, 200);
-                    restartGame();
+                    gameStop();
                   } else if (dealerCardNumber > playerCardNumber) {
                     gambling(bet, false);
                     setTimeout(function () {
                       alert("You have a lower card number than the dealer");
                     }, 200);
-                    restartGame();
+                    gameStop();
                   } else {
                     setTimeout(function () {
                       alert("You have the same card number as the dealer");
                     }, 200);
-                    restartGame();
+                    gameStop();
                   }
                 }
-          function restartGame() {
-            document.getElementById("dealerCards").innerHTML = "";
-            document.getElementById("playerCards").innerHTML = "";
-            document.getElementById("blackjackBet").disabled = false;
-            document.getElementById("startBlackjack").disabled = false;
-            document.getElementById("blackjackHit").disabled = true
-            document.getElementById("blackjackStand").disabled = true
-            document.getElementById("blackjackHit").removeEventListener("click",blackjackHit)
-            document.getElementById("blackjackStand").removeEventListener("click",blackjackStand)
-          }
         }, 500);
       }, 500);
     }, 500);
   }
+}
+function gameStop(reason){
+  document.getElementById("popUp").style.display = "block"
+}
+
+document.getElementById("close").addEventListener("click",close)
+function close(){
+  document.getElementById("popUp").style.display = "none"
 }
 function randomCard(newRun) {
   let chosenCard;

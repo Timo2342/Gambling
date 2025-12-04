@@ -42,4 +42,6 @@ function buy() {
   coins += 10;
   localStorage.setItem("coins", coins);
   document.getElementById("coinAmt").innerText = coins;
+  console.log(+10);
+  
 }

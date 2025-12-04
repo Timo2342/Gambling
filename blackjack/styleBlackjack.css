@@ -1,0 +1,59 @@
+#blackjackDiv {
+  display: flex;
+  justify-content: space-around;
+}
+#blackjackTable {
+  width: 60vw;
+}
+.cardsDiv {
+  position: absolute;
+}
+.playerCards {
+  margin-top: 25vw;
+  margin-left: 0.2vw;
+  width: 7vw;
+}
+.dealerCards {
+  margin-top: 2vw;
+  margin-left: 0.2vw;
+  width: 7vw;
+}
+#blackjackButtonDiv {
+  margin: 1vw;
+  display: flex;
+  justify-content: center;
+}
+.blackjackButton {
+  margin: 1vw;
+  padding: 0.2vw;
+  width: 3vw;
+  font-size: 1vw;
+}
+#popUp{
+    display: none;
+    position: absolute;
+    justify-self: center;
+    top: 30%;
+    background-color: rgb(165, 165, 165);
+    color: black;
+    padding: 0.5vw;
+    padding-top: 0;
+    width: 30vw;
+   height: 20vw;
+   justify-content: center;
+}
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 17  vw;
+}
+#close{
+    cursor: pointer;
+    font-size: 2vw;
+ justify-self: end;
+}
+#reason{
+    font-size: 1vw;
+    margin: 1vw;
+}
