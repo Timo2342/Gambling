@@ -34,26 +34,40 @@
     position: absolute;
     justify-self: center;
     top: 30%;
-    background-color: rgb(165, 165, 165);
+    background-color: rgb(65, 65, 65);
     color: black;
     padding: 0.5vw;
     padding-top: 0;
     width: 30vw;
    height: 20vw;
    justify-content: center;
+    z-index: 10;
 }
 #content{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 17  vw;
+    justify-content:center;
+    align-items:center;
+    height: 17vw;
+    width: 30vw;
+    flex-direction: column;
+}
+#restart{
+margin-top: 15vw;
+  font-size: 0.8vw;
+  padding: 0.2vw;
 }
 #close{
     cursor: pointer;
     font-size: 2vw;
- justify-self: end;
+    align-self: flex-start;
+    
 }
 #reason{
+  position: absolute;
+   align-self: center;
     font-size: 1vw;
     margin: 1vw;
+}
+#dealerNumber{
+  
 }

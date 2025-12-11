@@ -2,19 +2,17 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
 
 let usedCards = [];
 function blackjackStart() { 
+  if(!restartGame){
+    document.getElementById("dealerCards").innerHTML = "";
+    document.getElementById("playerCards").innerHTML = "";
+  }
   let bet;
   let playerACard = 0 * 1;
   let dealerACard = 0 * 1;
   bet = document.getElementById("blackjackBet").value;
   if (gambling(bet)) {
-    document.getElementById("dealerCards").innerHTML = "";
-            document.getElementById("playerCards").innerHTML = "";
-            document.getElementById("blackjackBet").disabled = false;
-            document.getElementById("startBlackjack").disabled = false;
-            document.getElementById("blackjackHit").disabled = true
-            document.getElementById("blackjackStand").disabled = true
-            document.getElementById("blackjackHit").removeEventListener("click",blackjackHit)
-            document.getElementById("blackjackStand").removeEventListener("click",blackjackStand)
+    let playerNumber = document.getElementById("playerNumber").innerHTML
+    let dealerNumber = document.getElementById("dealerNumber").innerHTML
     document.getElementById("blackjackBet").disabled = true;
     document.getElementById("startBlackjack").disabled = true;
     document.getElementById("blackjackHit").disabled = true;
@@ -24,6 +22,7 @@ function blackjackStart() {
     document.getElementById("dealerCards").appendChild(firstDealerCard);
     firstDealerCard.className = "dealerCards";
     firstDealerCard.src = firstDealerCardNumber;
+    dealerNumber += getCardCount(firstDealerCardNumber);
     setTimeout(function () {
       let seconndDealerCard = document.createElement("img");
       let seconndDealerCardNumber = randomCard();
@@ -36,12 +35,14 @@ function blackjackStart() {
         document.getElementById("playerCards").appendChild(firstPlayerCard);
         firstPlayerCard.className = "playerCards";
         firstPlayerCard.src = firstPlayerCardNumber;
+        playerNumber += getCardCount(firstPlayerCardNumber)
         setTimeout(function () {
           let seconndPlayerCard = document.createElement("img");
           let seconndPlayerCardNumber = randomCard();
           document.getElementById("playerCards").appendChild(seconndPlayerCard);
           seconndPlayerCard.className = "playerCards";
           seconndPlayerCard.src = seconndPlayerCardNumber;
+          playerNumber += getCardCount(seconndDealerCardNumber)
           if (getCardCount(firstPlayerCardNumber) === 11) {
             playerACard += 1;
             console.log("A")
@@ -67,8 +68,7 @@ function blackjackStart() {
               getCardCount(seconndDealerCardNumber) ===
               21
           ) {
-            alert("Both have Blackjack");
-            gameStop();
+            gameStop("Both have Blackjack");
             return;
           } else if (
             getCardCount(firstPlayerCardNumber) +
@@ -77,9 +77,8 @@ function blackjackStart() {
           ) {
             gambling(bet, true, 1.5);
             setTimeout(function () {
-              alert("You won due to Blackjack");
+              gameStop("You won due to Blackjack");
             }, 100);
-            gameStop();
             return;
           } else if (
             getCardCount(firstDealerCardNumber) +
@@ -88,8 +87,7 @@ function blackjackStart() {
           ) {
             gambling(bet, false);
             setTimeout(function () {
-              alert("You lost due to Blackjack");
-              gameStop();
+              gameStop("You lost due to Blackjack");
               return;
             }, 100);
           }
@@ -117,17 +115,17 @@ function blackjackStart() {
                     console.log("A")
                   }
                   if (playerACard > 0 && playerCardNumber > 21) {
-                      playerCardNumber -= 10;
-                      playerACard -= 1;
+                    playerCardNumber -= 10;
+                    playerACard -= 1;
                   }
                   if (playerCardNumber > 21) {
                     gambling(bet, false);
                     setTimeout(function () {
                       console.log("lost over 21")
-                      alert("You lost due to a count over 21");
+                      gameStop("You lost due to a count over 21");
                     }, 200);
-                    gameStop()
                   }
+                  playerNumber += playerCardNumber
                 }
               document
                 .getElementById("blackjackStand")
@@ -158,40 +156,59 @@ function blackjackStart() {
                   if (dealerCardNumber > 21) {
                     gambling(bet, true);
                     setTimeout(function () {
-                      alert("Dealer has over 21");
+                      gameStop("Dealer has over 21");
                     }, 200);
-                    gameStop();
                   } else if (dealerCardNumber < playerCardNumber) {
                     gambling(bet, true);
                     setTimeout(function () {
-                      alert("You have a higher card number than the dealer");
+                      gameStop("You have a higher card number than the dealer");
                     }, 200);
-                    gameStop();
                   } else if (dealerCardNumber > playerCardNumber) {
                     gambling(bet, false);
                     setTimeout(function () {
-                      alert("You have a lower card number than the dealer");
+                      gameStop("You have a lower card number than the dealer");
                     }, 200);
-                    gameStop();
                   } else {
                     setTimeout(function () {
-                      alert("You have the same card number as the dealer");
+                      gameStop("You have the same card number as the dealer");
                     }, 200);
-                    gameStop();
                   }
+                  dealerNumber += dealerCardNumber
+                }
+                function gameStop(reason){
+                    document.getElementById("popUp").style.display = "flex"
+                    document.getElementById("reason").innerHTML = reason
+                    document.getElementById("blackjackHit").removeEventListener("click",blackjackHit)
+                    document.getElementById("blackjackStand").removeEventListener("click",blackjackStand)
+                     seconndDealerCard.src = seconndDealerCardNumber;
                 }
         }, 500);
       }, 500);
     }, 500);
   }
 }
-function gameStop(reason){
-  document.getElementById("popUp").style.display = "block"
-}
 
+let restartGame = false;
 document.getElementById("close").addEventListener("click",close)
 function close(){
-  document.getElementById("popUp").style.display = "none"
+  document.getElementById("popUp").style.display = "none"   
+    document.getElementById("blackjackBet").disabled = false;
+    document.getElementById("startBlackjack").disabled = false;
+    document.getElementById("blackjackHit").disabled = true
+    document.getElementById("blackjackStand").disabled = true
+  restartGame = false
+}
+document.getElementById("restart").addEventListener("click",restart)
+function restart(){
+    document.getElementById("popUp").style.display = "none"
+    document.getElementById("dealerCards").innerHTML = "";
+    document.getElementById("playerCards").innerHTML = "";
+    document.getElementById("blackjackBet").disabled = false;
+    document.getElementById("startBlackjack").disabled = false;
+    document.getElementById("blackjackHit").disabled = true
+    document.getElementById("blackjackStand").disabled = true
+    blackjackStart()
+    restartGame = true
 }
 function randomCard(newRun) {
   let chosenCard;

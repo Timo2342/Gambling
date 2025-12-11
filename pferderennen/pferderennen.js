@@ -13,9 +13,6 @@ var betOnButton = [
     document
         .getElementById("start_run_hort")
         .addEventListener("click", hortStart);
-    document
-        .getElementById("test")
-        .addEventListener("click", test);
     for (let i = 0; i < 8; i++) {
         betOnButton[i].addEventListener("click", function() {
             betOnVal = i;
