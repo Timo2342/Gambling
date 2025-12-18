@@ -20,8 +20,8 @@ var betOnButton = [
         })
 };
 
-
 function hortStart() {
+
 let pays = [
   1.2,
   1.6,
@@ -61,7 +61,7 @@ let pays = [
     1,
   ]
   var hortrndspeed =[ //randomizer for the speed value
-    Math.random()*(1.50-0.75)+0.75,
+    Math.random()*(1.50-0.75)+1.75,
     Math.random()*(1.40-0.70)+0.70,
     Math.random()*(1.25-0.63)+0.63,
     Math.random()*(1.20-0.60)+0.60,
@@ -101,9 +101,15 @@ var betting = document.getElementById("currency_input_hort").value;
     console.log(hortPos.findIndex(above85)); // gibt mir wer gewinner ist
     if(i===7){ if (hortPos.findIndex(above85) === betOnVal ) {
         gambling(betting, true, pays[betOnVal]);
+        console.log(document.getElementById("Winpop").class);
+        document.getElementById("Winpop").style.visibility = "visible"
         coins === localStorage.getItem("coins");
         localStorage.setItem("coins", Math.floor(coins));
         document.getElementById("coinAmt").innerText = localStorage.getItem("coins")
+        document.getElementById("winPopamt").innerText = localStorage.getItem("coins")
+        function End() {
+          document.getElementById("Winpop").style.visibility = "hidden"
+        }
     }else{
       gambling(betting, false);
     }}

@@ -10,6 +10,7 @@
   background-image: url(../images/8-lanes-start-position-stadium-running-tracks-starting-point-eight-running-track-lanes_757852-1707.png);
   background-size: 90vw;
   background-position: center;
+
 }
 .hort {
   position: absolute;
@@ -46,37 +47,29 @@
 
 #mry{
   background-color: orangered;
-  cursor: pointer;
 }
 #cyn{
   background-color: cyan;
-  cursor: pointer;
 }
 #box{
   background-color: black;
   color: white  ;
-  cursor: pointer;
 }
 #pnk{
   background-color: pink;
-  cursor: pointer;
 }
 #res{
   background-color: red;
-  cursor: pointer;
 }
 #sup{
   background-color: white;
-  cursor: pointer;
 }
 #yel{
   background-color: yellow;
-  cursor: pointer;
 }
 #bul{
   background-color: blue;
-  cursor: pointer;
-    color: white  ;
+  color: white  ;
 }
 #horsetrack{
   width: 80vw;
@@ -89,12 +82,17 @@
     background-color: crimson;
     font-size: 5vw;
     align-self: auto;
+    border-radius: 2.5vw;
+    cursor: pointer;
 }
 #currency_input_hort{
-  border-radius: 0.2vw;
+  border-radius: 0.5vw;
   border-style: dashed;
-  border-width: 0.2vw;
-  width: 10vw;
+  border-width: 0.05vw;
+  margin: 0.5vw;
+  width: 20vw;
+  height: 1vw;
+  text-align: center;
 }
 #betArea{
   width: 80vw;
@@ -104,7 +102,7 @@
   
 }
 .bettingbutton {
-  border-radius: 2vw;
+  border-radius: 3vw;
   margin: 0.2vw;
   color: black;
   font-style: italic;
@@ -113,6 +111,7 @@
   height: fit-content;
   margin-block: initial;
   font-size: 1vw;
+  cursor: pointer;
 }
 #cntrl {
 display: flex;
@@ -124,4 +123,40 @@ flex-direction: column;
   content: 50vw;
   alignment-baseline: central;
   align-self: center;
+}
+.winPopupVis{
+  position: absolute;
+  width: 50vw;
+  height: 30vw;
+  top: 6vw;
+  left: 25vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: column;
+  visibility: visible;
+  background-color: rgb(150, 150, 150, 0.75);
+  border-radius: 4vw
+}
+.winPopIn{
+  width: 30vw;
+  height: 20vw;
+}
+#winPoptxt{
+  font-size: 2vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.winPopupinVis{
+  position: absolute;
+  width: 50vw;
+  height: 30vw;
+  top: 6vw;
+  left: 25vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+  background-color: rgb(150, 150, 150, 0.75);
+  border-radius: 4vw
 }

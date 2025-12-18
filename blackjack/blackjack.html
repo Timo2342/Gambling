@@ -30,18 +30,23 @@
       <p id="close">x</p>
     </div>
     <div id="blackjackDiv">
-      <p>Player card sum: <p id="playerNumber"></p></p>
+      <div class="numbers">
+        <p >Player card sum: <p id="playerNumber"></p></p>
+      </div>
       <img src="../images/blackjackTable.png" id="blackjackTable" />
       <div id="dealerCards" class="cardsDiv"></div>
       <div id="playerCards" class="cardsDiv"></div>
-      <p>Dealer card sum: <p id="dealerNumber"></p></p>
+      <div class="numbers">
+        <p>Dealer card sum:<p id="dealerNumber"></p></p>
+      </div>
     </div>
     <div id="blackjackButtonDiv">
       <button id="blackjackHit" class="blackjackButton">Hit</button>
       <button id="blackjackStand" class="blackjackButton">Stand</button>
     </div>
-    <input type="number" id="blackjackBet" />
-    <button id="startBlackjack">Start</button>
-    <p id="blackJackCardNum"></p>
+    <div id="startDiv">
+      <input type="number" id="blackjackBet" />
+      <button id="startBlackjack">Start</button>
+    </div>
   </body>
 </html>

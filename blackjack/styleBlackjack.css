@@ -12,6 +12,7 @@
   margin-top: 25vw;
   margin-left: 0.2vw;
   width: 7vw;
+  
 }
 .dealerCards {
   margin-top: 2vw;
@@ -26,8 +27,9 @@
 .blackjackButton {
   margin: 1vw;
   padding: 0.2vw;
-  width: 3vw;
-  font-size: 1vw;
+  width: 7vw;
+  height: 3vw;
+  font-size: 2vw;
 }
 #popUp{
     display: none;
@@ -60,7 +62,6 @@ margin-top: 15vw;
     cursor: pointer;
     font-size: 2vw;
     align-self: flex-start;
-    
 }
 #reason{
   position: absolute;
@@ -68,6 +69,33 @@ margin-top: 15vw;
     font-size: 1vw;
     margin: 1vw;
 }
+.numbers{
+  display: flex;
+  margin-top: 10vw;
+  font-size: 1.5vw;
+  width: 15vw;
+}
+#playerNumber{
+  margin-left: 0.5vw;
+}
 #dealerNumber{
-  
+  margin-left: 0.5vw;
+}
+#startDiv{
+display: flex;
+width: 100vw;
+justify-content: center;
+}
+#blackjackBet{
+  width: 15vw;
+  height: 3vw;
+  font-size: 2vw;
+  background-color: rgb(172, 172, 172);
+  box-shadow: none;
+  border: 0;
+  margin-right: 0.5vw;
+}
+#startBlackjack{
+  font-size: 1.5vw;
+  width: 4vw;
 }
