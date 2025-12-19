@@ -1,6 +1,18 @@
 document.getElementById("startBlackjack").addEventListener("click", blackjackStart);
+    document.getElementById("blackjackHit").disabled = true
+    document.getElementById("blackjackStand").disabled = true
 
 let usedCards = [];
+document.getElementById("blackjackBet").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        blackjackStart()
+    }
+});
+document.addEventListener('keydown', function(e) {
+    if(e.key == "Escape"){
+      close()
+    }
+});
 function blackjackStart() { 
   if(!restartGame){
     document.getElementById("dealerCards").innerHTML = "";
@@ -46,8 +58,6 @@ function blackjackStart() {
           document.getElementById("playerCards").appendChild(seconndPlayerCard);
           seconndPlayerCard.className = "playerCards";
           seconndPlayerCard.src = seconndPlayerCardNumber;
-          playerNumber += getCardCount(seconndPlayerCardNumber)
-          document.getElementById("playerNumber").innerHTML = playerNumber
           if (getCardCount(firstPlayerCardNumber) === 11) {
             playerACard += 1;
             console.log("A")
@@ -67,23 +77,24 @@ function blackjackStart() {
           console.log(playerACard);
           if (
             getCardCount(firstPlayerCardNumber) +
-              getCardCount(seconndPlayerCardNumber) ===
-              21 &&
+            getCardCount(seconndPlayerCardNumber) ===
+            21 &&
             getCardCount(firstDealerCardNumber) +
-              getCardCount(seconndDealerCardNumber) ===
-              21
+            getCardCount(seconndDealerCardNumber) ===
+            21
           ) {
             dealerNumber = 21
             gameStop("Both have Blackjack");
             return;
           } else if (
             getCardCount(firstPlayerCardNumber) +
-              getCardCount(seconndPlayerCardNumber) ===
+            getCardCount(seconndPlayerCardNumber) ===
             21
           ) {
             gambling(bet, true, 1.5);
             setTimeout(function () {
               dealerNumber += getCardCount(seconndDealerCardNumber)
+              document.getElementById("playerNumber").innerHTML = playerNumber
               gameStop("You won due to Blackjack");
             }, 100);
             return;
@@ -100,8 +111,14 @@ function blackjackStart() {
             }, 100);
           }
           let playerCardNumber =
-            getCardCount(firstPlayerCardNumber) +
-            getCardCount(seconndPlayerCardNumber);
+          getCardCount(firstPlayerCardNumber) +
+          getCardCount(seconndPlayerCardNumber);
+          if(playerCardNumber != 22){
+            playerNumber = playerCardNumber
+          }else{
+            playerNumber += 1
+          }
+          document.getElementById("playerNumber").innerHTML = playerNumber
           document.getElementById("blackjackHit").disabled = false;
           document.getElementById("blackjackStand").disabled = false;
               document

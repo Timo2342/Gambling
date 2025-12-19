@@ -1,16 +1,14 @@
 #run_simulation_hort {
-  border-radius: 10px;
+  border-radius: 1vw;
   border-color: black;
   border-width: 10vw;
   margin: 5vw;
   margin-bottom: 2vw;
   width: 90vw;
   height: 30vw;
-  margin-left: 5vw;
   background-image: url(../images/8-lanes-start-position-stadium-running-tracks-starting-point-eight-running-track-lanes_757852-1707.png);
   background-size: 90vw;
   background-position: center;
-
 }
 .hort {
   position: absolute;
@@ -97,8 +95,12 @@
 #betArea{
   width: 80vw;
   height: 4vw;
-  margin: 10vw;
-  display: inline-flex;
+  margin: 1vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: row;
+  justify-self: center;
   
 }
 .bettingbutton {
