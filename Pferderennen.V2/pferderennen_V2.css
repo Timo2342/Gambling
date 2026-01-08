@@ -1,0 +1,164 @@
+#run_simulation_hort {
+  border-radius: 1vw;
+  border-color: black;
+  border-width: 10vw;
+  margin: 5vw;
+  margin-bottom: 2vw;
+  width: 90vw;
+  height: 30vw;
+  background-image: url(../images/8-lanes-start-position-stadium-running-tracks-starting-point-eight-running-track-lanes_757852-1707.png);
+  background-size: 90vw;
+  background-position: center;
+}
+.hort {
+  position: absolute;
+  margin: 10px;
+  width: 3vw;
+  height: 3vw;
+  margin-left: 1vw;
+}
+#red {
+  margin-top: 4.2vw;
+}
+#black {
+  margin-top: 11.7vw;
+}
+#cyan {
+  margin-top: 8vw;
+}
+#pink {
+  margin-top: 15.4vw;
+}
+#white {
+  margin-top: 19.2vw;
+}
+#yellow {
+  margin-top: 22.9vw;
+}
+#blue {
+  margin-top: 26.7vw;
+}
+#orange {
+  margin-top: 0.5vw;
+}
+
+
+#mry{
+  background-color: orangered;
+}
+#cyn{
+  background-color: cyan;
+}
+#box{
+  background-color: black;
+  color: white  ;
+}
+#pnk{
+  background-color: pink;
+}
+#res{
+  background-color: red;
+}
+#sup{
+  background-color: white;
+}
+#yel{
+  background-color: yellow;
+}
+#bul{
+  background-color: blue;
+  color: white  ;
+}
+#horsetrack{
+  width: 80vw;
+  height: 20vw;
+}
+#start_run_hort{
+    width: 30vw;
+    height: 6vw;
+    color: gold;
+    background-color: crimson;
+    font-size: 5vw;
+    align-self: auto;
+    border-radius: 2.5vw;
+    cursor: pointer;
+}
+#currency_input_hort{
+  border-radius: 0.5vw;
+  border-style: dashed;
+  border-width: 0.05vw;
+  margin: 0.5vw;
+  width: 20vw;
+  height: 1vw;
+  text-align: center;
+}
+#betArea{
+  width: 80vw;
+  height: 4vw;
+  margin: 1vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: row;
+  justify-self: center;
+  
+}
+.bettingbutton {
+  border-radius: 3vw;
+  margin: 0.2vw;
+  color: black;
+  font-style: italic;
+  padding: 1%;
+  width: 7vw;
+  height: fit-content;
+  margin-block: initial;
+  font-size: 1vw;
+  cursor: pointer;
+}
+#cntrl {
+display: flex;
+justify-content:  center;
+align-items: center;
+flex-direction: column;
+}
+#body{
+  content: 50vw;
+  alignment-baseline: central;
+  align-self: center;
+}
+.winPopupVis{
+  position: absolute;
+  width: 50vw;
+  height: 30vw;
+  top: 6vw;
+  left: 25vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: column;
+  visibility: visible;
+  background-color: rgb(150, 150, 150, 0.75);
+  border-radius: 4vw
+}
+.winPopIn{
+  width: 30vw;
+  height: 20vw;
+}
+#winPoptxt{
+  font-size: 2vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.winPopupinVis{
+  position: absolute;
+  width: 50vw;
+  height: 30vw;
+  top: 6vw;
+  left: 25vw;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+  background-color: rgb(150, 150, 150, 0.75);
+  border-radius: 4vw
+}

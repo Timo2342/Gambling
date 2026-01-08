@@ -1,3 +1,7 @@
+body{
+  background-image: url(../images/casinoBackground.png);
+  background-size: cover;
+}
 #blackjackDiv {
   display: flex;
   justify-content: space-around;

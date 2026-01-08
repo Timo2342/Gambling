@@ -19,9 +19,6 @@ var betOnButton = [
             console.log(betOnVal);
         })
 }; //assigns each button their id 
-
-function hortStart() {
-  document.getElementById("winner").src = ""
 let imgref =[
   "https://static.wikitide.net/horseracetestswiki/1/1f/Orangevictory.png",
   "https://static.wikitide.net/horseracetestswiki/e/e2/Redvictory.png",
@@ -32,16 +29,6 @@ let imgref =[
   "https://static.wikitide.net/horseracetestswiki/3/36/Yellowvictory.png",
   "http://static.wikitide.net/horseracetestswiki/0/01/Bluevictory.png",
 ] //source for Winscreen
-let pays = [
-  1.2,
-  1.6,
-  2.2,
-  2.4,
-  2,
-  1.8,
-  1.4,
-  3,
-] //source for bet to pay Value
 let hort = [
   document.getElementById("orange"),
   document.getElementById("red"),
@@ -52,6 +39,62 @@ let hort = [
   document.getElementById("yellow"),
   document.getElementById("blue"),
 ]; //source for each horse on the track
+let pays = [
+  1.2,
+  1.6,
+  2.2,
+  2.4,
+  2,
+  1.8,
+  1.4,
+  3,
+] //source for bet to pay Value
+let chanceList = [
+    1/64,
+    1/60,
+    1/48,
+    1/40,
+    1/32,
+    1/24,
+    1/20,
+    1/16,
+    1/12,
+    1/8,
+    1/5,
+    1/4,
+] //Chances Displayed on button
+let chanceListMath = [
+    64,
+    60,
+    48,
+    40,
+    32,
+    24,
+    20,
+    16,
+    12,
+    8,
+    5,
+    4,
+] //Chances for the Calculation
+let multiplier = [
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+]
+var assignedChance = []
+function hortStart() {
+    for (let i = 0; i < 8; i++) {
+        Math.random() * (16 - 1) + 1;
+    }
+    for (let i = 0; i < 8; i++) {
+        Math.random() * (chanceListMath[i] - 1) + 1;
+    }
   document.getElementById("Winpop").style.visibility = "hidden" 
   document.getElementById("start_run_hort").disabled = "true"
   function above85(value){
@@ -82,7 +125,7 @@ let hort = [
   ];
 var betting = document.getElementById("currency_input_hort").value;
   if (betOnVal !== "" && gambling(betting)){
-    //console.log(hortrnd
+    //console.log(hortrndspeed);
     //gambling(betting, false);
   hortLoop()
   function hortLoop(){
