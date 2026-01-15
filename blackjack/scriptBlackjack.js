@@ -47,7 +47,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
           seconndDealerCard.src = "../images/cardDeck/back.jpg";
           setTimeout(function () {
             let firstPlayerCard = document.createElement("img");
-            let firstPlayerCardNumber = randomCard(true);
+            let firstPlayerCardNumber = randomCard();
             document.getElementById("playerCards").appendChild(firstPlayerCard);
             firstPlayerCard.className = "playerCards";
             firstPlayerCard.src = firstPlayerCardNumber;
@@ -120,6 +120,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
               }else{
                 playerNumber += 1
               }
+              document.getElementById("playerNumber").innerHTML = playerNumber
               document.getElementById("blackjackHit").disabled = false;
               document.getElementById("blackjackStand").disabled = false;
               document

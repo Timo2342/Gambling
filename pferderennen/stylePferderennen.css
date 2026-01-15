@@ -114,6 +114,7 @@
   margin-block: initial;
   font-size: 1vw;
   cursor: pointer;
+  border: 5px solid rgba(0, 0, 0, 0);
 }
 #cntrl {
 display: flex;

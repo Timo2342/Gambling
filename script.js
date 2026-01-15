@@ -45,6 +45,7 @@ function buy() {
   console.log(+10);
   
 }
+
 let usedCards = [];
     function randomCard(newRun) {
       let chosenCard;
