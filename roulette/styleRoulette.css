@@ -1,0 +1,7 @@
+#roulette{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 97vh;
+    margin-left: 1vw;
+}
