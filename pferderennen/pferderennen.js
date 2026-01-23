@@ -54,54 +54,70 @@ for (let i = 0; i < 8; i++) {
     };
   });//assigns each button their listiner 
 }; //assigns arrays their Value
-var  state = false
-var win = false
 function hortStart() {
+  function payOutDecider(target){
+      if (pays.findIndex(assignedrnd[target]) < 8) {
+        if (pays.findIndex(assignedrnd[target]) < 4) {
+          return 2.5
+        } else {
+          return 2
+        }
+      } else {
+        if (pays.findIndex(assignedrnd[target]) < 11) {
+          return 1.5
+        } else {
+          return 1
+        }
+      }
+  }
   function floorCoins(){
         coins === localStorage.getItem("coins");
         localStorage.setItem("coins", Math.floor(coins));
         document.getElementById("coinAmt").innerText = localStorage.getItem("coins");
-  };
+  };//function to take the uneven number of coins floor them and put them in
   function reset() {
     for (let i = 0; i < 8; i++) {
       hortPos[i] = 1 
-      betOnButton[i].disabled = "false"
+      hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";
       btnDissabled = false;
+      assignedrnd[i] = pays[Math.floor(Math.random() * 16)]
     }
-  }
+  } //resets the Horserace
   function above85(value){
     return value > 80
-  }
-  function winPopup(State, win){
-    if(state = false) {
+  } //checks if value is above 85 aka if the horse is on the finish line
+  function winPopup(state, win){
+    if(state === false) {
       document.getElementById("winner").src = ""
-      document.getElementById("Winpop").style.visibility = "hidden" 
+      document.getElementById("Winpop").style.visibility = "hidden"   
     }
-    if(state = true) {
+    if(state === true) {
       document.getElementById("Winpop").style.visibility = "visible"
       document.getElementById("winner").src = imgref[hortPos.findIndex(above85)]
       //document.getElementById("coinAmt").innerText = localStorage.getItem("coins")
-      if(win = true) {
+      if(win === true) {
         document.getElementById("WL").innerText = "You Won:"
-        document.getElementById("winPopamt").innerText = (betting * pays[betOnVal])
+        document.getElementById("winPopamt").innerText = (betting * ((assignedrnd[betOnVal]/2)*10))
       } else {
         document.getElementById("WL").innerText = "You Lost:"
         document.getElementById("winPopamt").innerText = (betting)
       }
     }
+  } //funtion to call up the Winner Screen
+  function winCondition() {
+    if (hortPos.findIndex(above85) === betOnVal) {
+      return true
+    } else {
+      return false
+    }
   }
   var betting = document.getElementById("currency_input_hort").value;
   document.getElementById("start_run_hort").disabled = "true"
   if (betOnVal !== "" && gambling(betting)){
-    for (let i = 0; i < 8; i++) {
-      hortPos[i] = 1;
-      betOnButton[i].disabled = "true"
-      assignedrnd[i] = pays[Math.floor(Math.random() * 16)]
-      };
     hortLoop();
     btnDissabled = true ;
   } else {
-    document.getElementById("start_run_hort").disabled = false  //reset ;
+    reset()
   };
   function hortLoop(){  
     if (hortPos.find(above85) === undefined) {
@@ -114,21 +130,11 @@ function hortStart() {
         },1)}//ms pro druchgang => schnelligkeit 
        } else {
         console.log(hortPos.findIndex(above85)); // gibt mir wer gewinner ist
-      if (hortPos.findIndex(above85) === betOnVal ) {
-        gambling(betting, true, (1/assignedrnd[betOnVal]));
+        document.getElementById("start_run_hort").disabled = "false"
+        gambling(betting, winCondition(), ((assignedrnd[betOnVal]/2)*10));
         floorCoins();
-        winPopup(true,true);
+        winPopup(true, winCondition());
         setTimeout(function () {
-          winPopup(false)
           reset()
         },5000)
-      }else{
-        gambling(betting, false);
-        winPopup(true,false)
-        setTimeout(function() {
-          winPopup(false)
-          reset()
-        },5000)
-    }
-//    document.getElementById("start_run_hort").disabled = false  //reset 
   }}}

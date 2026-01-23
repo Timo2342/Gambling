@@ -40,8 +40,8 @@ body{
     position: absolute;
     justify-self: center;
     top: 30%;
-    background-color: rgb(65, 65, 65);
-    color: black;
+    background-color: rgb(31, 31, 31);
+    color: rgb(175, 175, 175);
     padding: 0.5vw;
     padding-top: 0;
     width: 30vw;
@@ -70,8 +70,9 @@ margin-top: 15vw;
 #reason{
   position: absolute;
    align-self: center;
-    font-size: 1vw;
-    margin: 1vw;
+   justify-self: center;
+    margin-left: 1vw;
+    width: 30vw;
 }
 .numbers{
   display: flex;
@@ -102,4 +103,8 @@ justify-content: center;
 #startBlackjack{
   font-size: 1.5vw;
   width: 4vw;
+}
+#amount{
+  margin-top: 1vw;
+  font-size: 0.7vw;
 }

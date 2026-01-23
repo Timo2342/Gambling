@@ -90,7 +90,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                 21
               ) {
                 dealerNumber = 21
-                gameStop("Both have Blackjack");
+                gameStop();
                 return;
               } else if (
                 getCardCount(firstPlayerCardNumber) +
@@ -100,7 +100,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                 gambling(bet, true, 1.5);
                 setTimeout(function () {
                   dealerNumber += getCardCount(seconndDealerCardNumber)
-                  gameStop("You won due to Blackjack");
+                  gameStop(true);
                 }, 100);
                 return;
               } else if (
@@ -111,7 +111,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                 gambling(bet, false);
                 setTimeout(function () {
                   dealerNumber = 21
-                  gameStop("You lost due to Blackjack");
+                  gameStop(false);
                   return;
                 }, 100);
               }
@@ -150,7 +150,7 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                   setTimeout(function () {
                     console.log("lost over 21")
                     dealerNumber += getCardCount(seconndDealerCardNumber)
-                    gameStop("You lost due to a count over 21");
+                    gameStop(false);
                   }, 200);
                 }
                 playerNumber = playerCardNumber
@@ -187,27 +187,41 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                 if (dealerCardNumber > 21) {
                   gambling(bet, true);
                   setTimeout(function () {
-                    gameStop("Dealer has over 21");
+                    gameStop(true);
                   }, 200);
                 } else if (dealerCardNumber < playerCardNumber) {
                   gambling(bet, true);
                   setTimeout(function () {
-                    gameStop("You have a higher card number than the dealer");
+                    gameStop(true);
                   }, 200);
                 } else if (dealerCardNumber > playerCardNumber) {
                   gambling(bet, false);
                   setTimeout(function () {
-                    gameStop("You have a lower card number than the dealer");
+                    gameStop(false);
                   }, 200);
                 } else {
                   setTimeout(function () {
-                    gameStop("You have the same card number as the dealer");
+                    gameStop();
                   }, 200);
                 }
               }
               function gameStop(reason){
                 document.getElementById("popUp").style.display = "flex"
-                document.getElementById("reason").innerHTML = reason
+                let text
+                let amount
+                if(reason === false){
+                  text = "../images/lose.png"
+                  amount = "Coins Lost:" + bet
+                  document.getElementById("reason").style.width = "20vw"
+                }else if(reason){
+                  text = "../images/Winner.png"
+                  amount = "Coins Won:" + bet
+                }else{
+                  text = "../images/nothing.jpeg"
+                  amount = "Coins Won:0"
+                }
+                document.getElementById("amount").innerHTML = amount
+                document.getElementById("reason").src = text
                 document.getElementById("blackjackHit").removeEventListener("click",blackjackHit)
                 document.getElementById("blackjackStand").removeEventListener("click",blackjackStand)
                 seconndDealerCard.src = seconndDealerCardNumber;
