@@ -14,4 +14,12 @@
 }
 #chip{
     width: 3vw;
+    position: absolute;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    right: 49vw;
+    bottom: 8vw;
 }
