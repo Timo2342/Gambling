@@ -212,13 +212,15 @@ document.getElementById("startBlackjack").addEventListener("click", blackjackSta
                 if(reason === false){
                   text = "../images/lose.png"
                   amount = "Coins Lost:" + bet
-                  document.getElementById("reason").style.width = "20vw"
+                  document.getElementById("reason").style.width = "22vw"
                 }else if(reason){
                   text = "../images/Winner.png"
                   amount = "Coins Won:" + bet
+                  document.getElementById("reason").style.width = "30vw"
                 }else{
                   text = "../images/nothing.jpeg"
                   amount = "Coins Won:0"
+                  document.getElementById("reason").style.width = "20vw"
                 }
                 document.getElementById("amount").innerHTML = amount
                 document.getElementById("reason").src = text

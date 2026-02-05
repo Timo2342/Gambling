@@ -1,5 +1,6 @@
  
 var betOnVal = "" 
+var assignIndex = []
 var hortPos = [] 
 var pays = [] 
 var speed = [] 
@@ -38,57 +39,71 @@ var betOnButton = [
   document 
         .getElementById("start_run_hort") 
         .addEventListener("click", hortStart); 
-for (let i = 0; i < 8; i++) { 
-  pays[i] = (Math.floor(500+25*i))*0.001 
-  pays[8+i] = (Math.floor(700+25*i))*0.001  
-  assignedrnd[i] = pays[Math.floor(Math.random(16))]  
-  hortPos[i] = 1      
-  console.log(pays); 
-  //console.log(hortPos) 
-  betOnButton[i].addEventListener("click", function() { 
-    if(!btnDissabled){ 
-      if(betOnVal != "" || betOnVal === 0){ 
-        betOnButton[betOnVal].style.borderColor = "rgba(0, 0, 0, 0)" 
-      }; 
+function startUp() {
+  for (let i = 0; i < 8; i++) { 
+    pays[i] = (Math.floor(500+25*i))*0.001 
+    pays[8+i] = (Math.floor(700+25*i))*0.001  
+    assignIndex[i] = Math.floor(Math.random()*16)
+    hortPos[i] = 1      
+    betOnButton[i].addEventListener("click", function() { 
+      if(!btnDissabled){ 
+        if(betOnVal != "" || betOnVal === 0){ 
+          betOnButton[betOnVal].style.borderColor = "rgba(0, 0, 0, 0)" 
+        }; 
       betOnVal = i; 
       console.log(betOnVal); 
       betOnButton[i].style.borderColor = "green"; 
     }; 
   });//assigns each button their listiner  
-}; //assigns arrays their Value 
+  }}; //assigns arrays their Value 
 function payOutDecider(target){ 
-   if (pays.findIndex[assignedrnd[target]] < 8) { 
-        if (pays.findIndex[assignedrnd[target]] < 4) { 
+   if (assignIndex[target] < 8) { 
+        if (assignIndex[target] < 4) { 
           return 2.5 
         } else { 
           return 2 
         } 
       } else { 
-        if (pays.findIndex[assignedrnd[target]] < 11) { 
+        if (assignIndex[target] < 11) { 
           return 1.5 
         } else { 
           return 1.2 
         } 
       }  
   } 
-function hortStart() { 
- 
-  function floorCoins(){ 
+function assign() {
+  for(let i = 0; i < 8; i++){
+      assignedrnd[i] = pays[assignIndex[i]];
+  }}
+function update(){
+  for(let i = 0; i < 8; i++){
+    console.log(payOutDecider(i));
+    
+    betOnButton[i].innerText = "pays 1/" + payOutDecider(i); 
+  }
+  }
+function floorCoins(){ 
         coins === localStorage.getItem("coins"); 
         localStorage.setItem("coins", Math.floor(coins)); 
         document.getElementById("coinAmt").innerText = localStorage.getItem("coins"); 
   };//function to take the uneven number of coins floor them and put them in 
-  function reset() { 
+function reset(reasign) { 
     for (let i = 0; i < 8; i++) { 
-      hortPos[i] = 1  
+      hortPos[i] = 0  
       hort[i].style.transform = "translateX(" + hortPos[i] + "vw)"; 
       btnDissabled = false; 
-      assignedrnd[i] = pays[Math.floor(Math.random(16))];   
-      betOnButton[i].innerText = "pays 1/" + payOutDecider(i); 
-      winPopup(false) 
     } 
     document.getElementById("start_run_hort").disabled = false 
-  } //resets the Horserace 
+    if(reasign === true){
+      assign()
+      update()
+      }
+    } //resets the Horserace 
+startUp()
+assign()
+update()
+function hortStart() { 
+  console.log(betOnVal); 
   function above85(value){ 
     return value > 80 
   } //checks if value is above 85 aka if the horse is on the finish line 
@@ -103,7 +118,7 @@ function hortStart() {
       //document.getElementById("coinAmt").innerText = localStorage.getItem("coins") 
       if(win === true) { 
         document.getElementById("WL").innerText = "You Won:" 
-        document.getElementById("winPopamt").innerText = (betting * ((assignedrnd[betOnVal]/2)*10)) 
+        document.getElementById("winPopamt").innerText = (betting * payOutDecider(hortPos.findIndex(above85))) 
       } else { 
         document.getElementById("WL").innerText = "You Lost:" 
         document.getElementById("winPopamt").innerText = (betting) 
@@ -122,15 +137,18 @@ function hortStart() {
   if (betOnVal !== "" && gambling(betting)){ 
     hortLoop(); 
     btnDissabled = true ; 
-  } else { 
-    reset() 
-  }; 
-  for (let i = 0; i < 8; i++) {  
-    speed[i] = (((Math.random() * (1 - 0.2) + 0.2) * assignedrnd[i])/ 10);  // => Finalisierung Des Geschwindigkeits Atribut 
-  } 
-  console.log(speed) 
+      for (let i = 0; i < 8; i++) {  
+        speed[i] = (((Math.random() * (1 - 0.2) + 0.2) * assignedrnd[i])/ 10);  // => Finalisierung Des Geschwindigkeits Atribut 
+        };
+    console.log(speed) 
+    } else { 
+      reset(false) 
+    }; 
+
   function hortLoop(){   
-    if (hortPos.find(above85) === undefined) { 
+    console.log(above85(hortPos));
+    console.log(hortPos.findIndex(above85));
+    if (above85(hortPos) === false) { 
       for (let i = 0; i < 8; i++) {   
         setTimeout(function(){ 
           hortPos[i] += speed[i]; 
@@ -144,7 +162,7 @@ function hortStart() {
         floorCoins(); 
         winPopup(true, winCondition()); 
         setTimeout(function () { 
-          reset() 
+          reset(true) 
         },5000) 
   }}} 
                                                                                                                                                                           
