@@ -1,5 +1,8 @@
  
 var betOnVal = "" 
+var check1 = 0
+var check2 = 0
+var check3 = 0
 var assignIndex = []
 var hortPos = [] 
 var pays = [] 
@@ -34,7 +37,7 @@ var betOnButton = [
     document.getElementById("pink"), 
     document.getElementById("white"), 
     document.getElementById("yellow"), 
-    document.getElementById("blue"), 
+    document.getElementById("blue"),  
   ]; //source for each horse on the track 
   document 
         .getElementById("start_run_hort") 
@@ -59,26 +62,26 @@ function startUp() {
 function payOutDecider(target){ 
    if (assignIndex[target] < 8) { 
         if (assignIndex[target] < 4) { 
-          return 2.5 
+          return 5 
         } else { 
-          return 2 
+          return 4 
         } 
       } else { 
         if (assignIndex[target] < 11) { 
-          return 1.5 
+          return 3 
         } else { 
-          return 1.2 
+          return 2
         } 
       }  
   } 
 function assign() {
   for(let i = 0; i < 8; i++){
+      assignIndex[i] = Math.floor(Math.random()*16)
       assignedrnd[i] = pays[assignIndex[i]];
   }}
 function update(){
   for(let i = 0; i < 8; i++){
     console.log(payOutDecider(i));
-    
     betOnButton[i].innerText = "pays 1/" + payOutDecider(i); 
   }
   }
@@ -87,26 +90,24 @@ function floorCoins(){
         localStorage.setItem("coins", Math.floor(coins)); 
         document.getElementById("coinAmt").innerText = localStorage.getItem("coins"); 
   };//function to take the uneven number of coins floor them and put them in 
-function reset(reasign) { 
-    for (let i = 0; i < 8; i++) { 
-      hortPos[i] = 0  
-      hort[i].style.transform = "translateX(" + hortPos[i] + "vw)"; 
-      btnDissabled = false; 
-    } 
-    document.getElementById("start_run_hort").disabled = false 
-    if(reasign === true){
-      assign()
-      update()
-      }
-    } //resets the Horserace 
+
+function above85(value){ 
+    return value > 80 
+  } //checks if value is above 85 aka if the horse is on the finish line 
+function above20(value){ 
+    return value > 20 
+  } //checks if value is above 20
+function above40(value){ 
+    return value > 40 
+  } //checks if value is above 40
+function above60(value){ 
+    return value > 60 
+  } //checks if value is above 60
 startUp()
 assign()
 update()
 function hortStart() { 
-  console.log(betOnVal); 
-  function above85(value){ 
-    return value > 80 
-  } //checks if value is above 85 aka if the horse is on the finish line 
+  console.log(betOnVal);
   function winPopup(state, win){ 
     if(state === false) { 
       document.getElementById("winner").src = "" 
@@ -124,7 +125,23 @@ function hortStart() {
         document.getElementById("winPopamt").innerText = (betting) 
       } 
     } 
-  } //funtion to call up the Winner Screen 
+  } //funtion to call up the Winner Screen  
+  function reset(reasign) { 
+    for (let i = 0; i < 8; i++) { 
+      hortPos[i] = 0  
+      hort[i].style.transform = "translateX(" + hortPos[i] + "vw)"; 
+      btnDissabled = false; 
+      winPopup(false,false)
+    } 
+    document.getElementById("start_run_hort").disabled = false 
+    if(reasign === true){
+        assign()
+        update()
+        check1 = 0
+        check2 = 0
+        check3 = 0
+      }
+    } //resets the Horserace 
   function winCondition() { 
     if (hortPos.findIndex(above85) === betOnVal) { 
       return true 
@@ -138,7 +155,7 @@ function hortStart() {
     hortLoop(); 
     btnDissabled = true ; 
       for (let i = 0; i < 8; i++) {  
-        speed[i] = (((Math.random() * (1 - 0.2) + 0.2) * assignedrnd[i])/ 10);  // => Finalisierung Des Geschwindigkeits Atribut 
+        speed[i] = (((Math.random() * (1 - 0.2) + 0.2) * assignedrnd[i])/ 12);  // => Finalisierung Des Geschwindigkeits Atribut 
         };
     console.log(speed) 
     } else { 
@@ -148,14 +165,17 @@ function hortStart() {
   function hortLoop(){   
     console.log(above85(hortPos));
     console.log(hortPos.findIndex(above85));
-    if (above85(hortPos) === false) { 
-      for (let i = 0; i < 8; i++) {   
-        setTimeout(function(){ 
-          hortPos[i] += speed[i]; 
-          hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";    
-          if (i === 7) {hortLoop()} 
-        },1)}//ms pro druchgang => schnelligkeit  
-       } else { 
+    if (hortPos.findIndex(above85) === -1) {
+        for (let i = 0; i < 8; i++) {
+          if (hortPos.findIndex(above20) != -1 && check1 === 0){for (let i = 0; i < 8; i++) {speed[i] = (((Math.random() * (1 - 0.4) + 0.2) * assignedrnd[i])/ 12);}check1 = 1}   
+          if (hortPos.findIndex(above40) != -1 && check2 === 0){for (let i = 0; i < 8; i++) {speed[i] = (((Math.random() * (1 - 0.4) + 0.2) * assignedrnd[i])/ 12);}check2 = 1}   
+          if (hortPos.findIndex(above60) != -1 && check3 === 0){for (let i = 0; i < 8; i++) {speed[i] = (((Math.random() * (1 - 0.4) + 0.2) * assignedrnd[i])/ 12);}check3 = 1}    
+          setTimeout(function(){ 
+            hortPos[i] += speed[i]; 
+            hort[i].style.transform = "translateX(" + hortPos[i] + "vw)";    
+            if (i === 7) {hortLoop()} 
+          },1)}//ms pro druchgang => schnelligkeit  
+         } else { 
         console.log(hortPos.findIndex(above85)); // gibt mir wer gewinner ist 
         document.getElementById("start_run_hort").disabled = "false" 
         gambling(betting, winCondition(), payOutDecider(betOnVal)); 

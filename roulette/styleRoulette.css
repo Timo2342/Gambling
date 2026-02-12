@@ -30,11 +30,13 @@
 width: 3.4vw;
 height: 6vw;
 border: 0.1vw solid rgb(168, 168, 168);
+font-size: 1vw;
 }
 #tableNumbers{
-display: flex;
-flex-wrap: wrap;
+display: grid;
+grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
 justify-content: center;
 margin-left: 5vw;
 margin-right: 5vw;
+height: 18vw;
 }
